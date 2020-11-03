@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Unlogged from './Unlogged'
-import Message from '../components/Message'
-import Projects from '../components/Projects'
+import Accounts from '../components/Accounts'
+import { loadAccounts } from '../actions/accountsActions'
 
 function Dashboard({ userHandlers, projectHandlers }) {
   const [user] = userHandlers
@@ -10,8 +10,19 @@ function Dashboard({ userHandlers, projectHandlers }) {
 
   useEffect(() => {
     if (user.auth) {
+      ;(async () => {
+        const data = await loadAccounts()
+        if (data.success) {
+          setProjects(data.accounts)
+        } else {
+          console.log('error ', data)
+          setProjects(data)
+        }
+      })()
     }
-  }, [user])
+  }, [user.auth])
+
+  console.log(projects)
 
   return (
     <Container>
@@ -27,7 +38,7 @@ function Dashboard({ userHandlers, projectHandlers }) {
           <Row className="my-3 px-0">
             <Col lg={4}>
               {projects.length > 0 ? (
-                <Projects />
+                <Accounts projectsHandlers={projectHandlers} />
               ) : (
                 <h4>You don't have projects yet</h4>
               )}

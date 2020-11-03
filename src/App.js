@@ -12,7 +12,7 @@ function App() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('userState')) || defaultUserState
   )
-  const [projects, setProjects] = useState('')
+  const [projects, setProjects] = useState([])
 
   const routes = [
     {
