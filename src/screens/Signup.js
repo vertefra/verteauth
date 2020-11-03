@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { userSignUp } from '../actions/userActions'
+import { defaultFormState } from '../defaultStates/defaultStates'
 
-const Signup = ({ history }) => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  })
+const Signup = ({ history, userHandlers }) => {
+  const [form, setForm] = useState(defaultFormState)
+  const [user, setUser] = userHandlers
 
   const handleChange = ev => {
     setForm({
@@ -15,15 +14,15 @@ const Signup = ({ history }) => {
     })
   }
 
-  const handleSignUp = async ev => {
-    console.log(ev)
+  const handleSignup = async ev => {
     const data = await userSignUp(form)
-    setForm({ email: '', password: '' })
+    setForm(defaultFormState)
     if (data.success) {
-      localStorage.setItem('userState', '')
+      localStorage.removeItem('userState')
       history.push('/')
     } else {
       console.log(data)
+      setUser(data)
     }
   }
   return (
@@ -53,7 +52,7 @@ const Signup = ({ history }) => {
         </Col>
       </Row>
       <Row>
-        <Button className="mx-3" variant="primary" onClick={handleSignUp}>
+        <Button className="mx-3" variant="primary" onClick={handleSignup}>
           Signup
         </Button>
       </Row>

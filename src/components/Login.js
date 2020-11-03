@@ -2,17 +2,15 @@ import React, { useState } from 'react'
 import { Form, FormControl, Button, Navbar, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { userLogin } from '../actions/userActions'
+import { defaultFormState } from '../defaultStates/defaultStates'
 
 const Login = ({ userHandlers }) => {
   const [user, setUser] = userHandlers
-  const [loginForm, setLoginForm] = useState({
-    email: '',
-    password: '',
-  })
+  const [form, setForm] = useState(defaultFormState)
 
   const handleFormChange = ev => {
-    setLoginForm({
-      ...loginForm,
+    setForm({
+      ...form,
       [ev.target.id]: ev.target.value,
     })
   }
@@ -20,13 +18,14 @@ const Login = ({ userHandlers }) => {
   const handleLogin = async ev => {
     console.log('login')
     ev.preventDefault()
-    const userState = await userLogin(loginForm)
+
+    const userState = await userLogin(form)
     if (userState.success) {
       userState.auth = true
-      console.log(userState)
       setUser(userState)
     } else {
-      console.log(userState)
+      // the object received will give an error property to the user Object
+      setUser(userState)
     }
   }
 
@@ -37,7 +36,7 @@ const Login = ({ userHandlers }) => {
         placeholder="email"
         className="mr-sm-2"
         id="email"
-        value={loginForm.email}
+        value={form.email}
         onChange={handleFormChange}
       />
       <FormControl
@@ -45,7 +44,7 @@ const Login = ({ userHandlers }) => {
         placeholder="password"
         className="mr-sm-2"
         id="password"
-        value={loginForm.password}
+        value={form.password}
         onChange={handleFormChange}
       />
       <Button

@@ -1,9 +1,17 @@
 import React from 'react'
 import { Button, Container, Navbar } from 'react-bootstrap'
+import { defaultUserState } from '../defaultStates/defaultStates'
 import Login from './Login'
 
 const Header = ({ userHandlers }) => {
-  const [user] = userHandlers
+  const [user, setUser] = userHandlers
+
+  const handleLogout = () => {
+    localStorage.removeItem('userState')
+    localStorage.removeItem('token')
+    setUser(defaultUserState)
+  }
+
   return (
     <header>
       <Container>
@@ -14,7 +22,7 @@ const Header = ({ userHandlers }) => {
           ) : (
             <Navbar.Text>
               <Navbar.Text>Welcome {user.email}</Navbar.Text>
-              <Button variant="primary" className="ml-3">
+              <Button variant="primary" className="ml-3" onClick={handleLogout}>
                 logout
               </Button>
             </Navbar.Text>
