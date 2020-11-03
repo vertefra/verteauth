@@ -2,7 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 
 function Dashboard({ userHandlers, projectHandlers }) {
-  console.log(userHandlers)
+  const [user, setUser] = userHandlers
+  const [projects, setProjects] = projectHandlers
   return <div>Dashboard</div>
 }
 

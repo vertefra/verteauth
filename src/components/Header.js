@@ -9,7 +9,11 @@ const Header = ({ userHandlers }) => {
       <Container>
         <Navbar bg="dark" expand="lg" className="justify-content-between">
           <Navbar.Brand href="/">verteauth</Navbar.Brand>
-          {!user.auth && <Login userHandlers={userHandlers} />}
+          {!user.auth ? (
+            <Login userHandlers={userHandlers} />
+          ) : (
+            <Navbar.Text>Welcome {user.email}</Navbar.Text>
+          )}
         </Navbar>
       </Container>
     </header>
