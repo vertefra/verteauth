@@ -4,45 +4,48 @@ import { Container } from 'react-bootstrap'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Dashboard from './screens/Dashboard'
+import Signup from './screens/Signup'
 
 function App() {
-  const [user, setUser] = useState({
-    email: '',
-    key: '',
-    token: '',
-    userID: '',
-    auth: false,
-  })
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem('userState')) || {
+      email: '',
+      key: '',
+      token: '',
+      userID: '',
+      auth: false,
+    }
+  )
   const [projects, setProjects] = useState('')
 
   const routes = [
     {
-      component: Dashboard,
+      render: props => (
+        <Dashboard
+          {...props}
+          userHandlers={[user, setUser]}
+          projectHandlers={[projects, setProjects]}
+        />
+      ),
       path: '/',
       key: 'home',
+      exact: true,
+    },
+    {
+      render: props => <Signup {...props} userHandlers={[user, setUser]} />,
+      path: '/signup',
+      key: 'signup',
     },
   ]
 
+  console.log('rendering')
+
   return (
     <Container>
-      <Header userHandlers={[user, setUser]} />
       <BrowserRouter>
+        <Header userHandlers={[user, setUser]} />
         {routes.map(r => {
-          return (
-            <Route
-              to={r.path}
-              key={r.key}
-              render={props => {
-                return (
-                  <r.component
-                    {...props}
-                    userHandlers={[user, setUser]}
-                    projectHandlers={[projects, setProjects]}
-                  />
-                )
-              }}
-            />
-          )
+          return <Route {...r} />
         })}
       </BrowserRouter>
     </Container>

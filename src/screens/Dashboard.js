@@ -1,10 +1,24 @@
 import React from 'react'
-import Header from '../components/Header'
+import { Container, Row, Col } from 'react-bootstrap'
+import Unlogged from './Unlogged'
 
 function Dashboard({ userHandlers, projectHandlers }) {
   const [user, setUser] = userHandlers
   const [projects, setProjects] = projectHandlers
-  return <div>Dashboard</div>
+
+  return (
+    <>
+      {!user.auth ? (
+        <Unlogged />
+      ) : (
+        <Container>
+          <Row>
+            <h1>Dashboard</h1>
+          </Row>
+        </Container>
+      )}
+    </>
+  )
 }
 
 export default Dashboard

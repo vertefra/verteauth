@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, FormControl, Button, Navbar, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { userLogin } from '../actions/userActions'
 
 const Login = ({ userHandlers }) => {
@@ -17,11 +18,15 @@ const Login = ({ userHandlers }) => {
   }
 
   const handleLogin = async ev => {
+    console.log('login')
     ev.preventDefault()
     const userState = await userLogin(loginForm)
     if (userState.success) {
       userState.auth = true
+      console.log(userState)
       setUser(userState)
+    } else {
+      console.log(userState)
     }
   }
 
@@ -56,7 +61,9 @@ const Login = ({ userHandlers }) => {
           <h6 style={{ textAlign: 'right' }}>You don't have an account?</h6>
         </Col>
         <Col>
-          <Button>signup</Button>
+          <Link to="/signup">
+            <Button>signup</Button>
+          </Link>
         </Col>
       </Row>
     </Form>
