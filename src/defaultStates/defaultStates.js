@@ -10,3 +10,8 @@ export const defaultFormState = {
   email: '',
   password: '',
 }
+
+export const defaultFormAccountState = {
+  username: '',
+  password: '',
+}

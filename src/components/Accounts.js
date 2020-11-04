@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { ListGroup } from 'react-bootstrap'
 
 const Accounts = ({ projectsHandlers }) => {
@@ -7,7 +6,16 @@ const Accounts = ({ projectsHandlers }) => {
   return (
     <ListGroup>
       {projects.map(p => {
-        return <ListGroup.Item key={p.ID}>user: {p.username}</ListGroup.Item>
+        return (
+          <ListGroup.Item key={p.ID}>
+            <h6>user: {p.username}</h6>
+            <footer>
+              <small>_ID: {p.ID} </small>
+              <br />
+              <small>key: {p.key}</small>
+            </footer>
+          </ListGroup.Item>
+        )
       })}
     </ListGroup>
   )

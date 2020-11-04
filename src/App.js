@@ -37,9 +37,13 @@ function App() {
   console.log('rendering')
 
   return (
-    <Container>
+    <Container fluid="lg" className="container">
       <BrowserRouter>
-        <Header userHandlers={[user, setUser]} />
+        <Row>
+          <Col lg={12}>
+            <Header userHandlers={[user, setUser]} fluid />
+          </Col>
+        </Row>
         <Row>
           <Col>{user.error && <Message message={user.error} />}</Col>
         </Row>

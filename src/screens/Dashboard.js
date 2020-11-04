@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import Unlogged from './Unlogged'
+import Unlogged from '../components/Unlogged'
 import Accounts from '../components/Accounts'
 import { loadAccounts } from '../actions/accountsActions'
+import AddAuthorization from '../components/AddAuthorization'
+import UserInfo from '../components/UserInfo'
 
 function Dashboard({ userHandlers, projectHandlers }) {
   const [user] = userHandlers
@@ -25,7 +27,7 @@ function Dashboard({ userHandlers, projectHandlers }) {
   console.log(projects)
 
   return (
-    <Container>
+    <Container className="container">
       {!user.auth ? (
         <Unlogged />
       ) : (
@@ -36,15 +38,16 @@ function Dashboard({ userHandlers, projectHandlers }) {
             </Col>
           </Row>
           <Row className="my-3 px-0">
-            <Col lg={4}>
+            <Col lg={2}>
               {projects.length > 0 ? (
                 <Accounts projectsHandlers={projectHandlers} />
               ) : (
                 <h4>You don't have projects yet</h4>
               )}
             </Col>
-            <Col lg={8}>
-              here all the info about the projects when click on project
+            <Col lg={4}>
+              <UserInfo user={user} />
+              <AddAuthorization />
             </Col>
           </Row>
         </Container>
