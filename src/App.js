@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Message from './components/Message'
 import { defaultUserState } from './defaultStates/defaultStates'
+import AccountAccess from './screens/AccountAccess'
 import Dashboard from './screens/Dashboard'
 import Signup from './screens/Signup'
 

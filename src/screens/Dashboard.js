@@ -22,7 +22,7 @@ function Dashboard({ userHandlers, projectHandlers }) {
         }
       })()
     }
-  }, [user.auth])
+  }, [user])
 
   console.log(projects)
 
@@ -47,7 +47,10 @@ function Dashboard({ userHandlers, projectHandlers }) {
             </Col>
             <Col lg={4}>
               <UserInfo user={user} />
-              <AddAuthorization />
+              <AddAuthorization
+                userHandlers={userHandlers}
+                projectHandlers={projectHandlers}
+              />
             </Col>
           </Row>
         </Container>

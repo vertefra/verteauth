@@ -2,7 +2,6 @@ import { ListGroup } from 'react-bootstrap'
 
 const Accounts = ({ projectsHandlers }) => {
   const [projects, setProjects] = projectsHandlers
-  console.log(projects[0])
   return (
     <ListGroup>
       {projects.map(p => {
