@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
 import { BrowserRouter, Route } from 'react-router-dom'
+import { userLogin } from './actions/userActions'
 import Header from './components/Header'
 import Message from './components/Message'
 import { defaultUserState } from './defaultStates/defaultStates'
-import AccountAccess from './screens/AccountAccess'
 import Dashboard from './screens/Dashboard'
 import Signup from './screens/Signup'
 
@@ -34,8 +34,6 @@ function App() {
       key: 'signup',
     },
   ]
-
-  console.log('rendering')
 
   return (
     <Container fluid="lg" className="container">

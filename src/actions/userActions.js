@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { defaultUserState } from '../defaultStates/defaultStates.js'
 
 export const userLogin = async (credentials = { email: '', password: '' }) => {
   try {
@@ -20,6 +21,21 @@ export const userSignUp = async (
 ) => {
   try {
     const { data } = await axios.post('api/users/signup', credentials)
+    return data
+  } catch (err) {
+    return err.response.data
+  }
+}
+
+export const updateUser = async (userState = defaultUserState) => {
+  console.log('UPDATING USER', userState)
+  try {
+    const { data } = await axios.put(`/api/users/${userState.ID}`, userState, {
+      headers: {
+        Authorization: `Bearer ${userState.token}`,
+      },
+    })
+    console.log(data)
     return data
   } catch (err) {
     return err.response.data

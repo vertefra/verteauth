@@ -2,8 +2,9 @@ export const defaultUserState = {
   email: '',
   key: '',
   token: '',
-  userID: '',
+  ID: '',
   auth: false,
+  redirectURL: '',
 }
 
 export const defaultFormState = {

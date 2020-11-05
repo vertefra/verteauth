@@ -2,10 +2,10 @@ import axios from 'axios'
 
 export const loadAccounts = async () => {
   const userState = JSON.parse(localStorage.getItem('userState'))
-  const { key, userId, token } = userState
+  const { ID, token } = userState
 
   try {
-    const { data } = await axios.get(`/api/users/${userId}/accounts`, {
+    const { data } = await axios.get(`/api/users/${ID}/accounts`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

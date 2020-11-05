@@ -46,7 +46,7 @@ function Dashboard({ userHandlers, projectHandlers }) {
               )}
             </Col>
             <Col lg={4}>
-              <UserInfo user={user} />
+              <UserInfo userHandlers={userHandlers} />
               <AddAuthorization
                 userHandlers={userHandlers}
                 projectHandlers={projectHandlers}
