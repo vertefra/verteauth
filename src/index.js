@@ -5,6 +5,9 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './bootstrap.min.css'
 
+export const server =
+  'https://verte-auth-server.herokuapp.com/' || '127.0.0.1:4999'
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

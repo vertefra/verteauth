@@ -14,11 +14,13 @@ function Dashboard({ userHandlers, projectHandlers }) {
     if (user.auth) {
       ;(async () => {
         const data = await loadAccounts()
-        if (data.success) {
-          setProjects(data.accounts)
-        } else {
-          console.log('error ', data)
-          setProjects(data)
+        if (data) {
+          if (data.success) {
+            setProjects(data.accounts)
+          } else {
+            console.log('error ', data)
+            setProjects(data)
+          }
         }
       })()
     }

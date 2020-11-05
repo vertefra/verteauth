@@ -1,11 +1,12 @@
 import axios from 'axios'
+import { server } from '../index.js'
 
 export const loadAccounts = async () => {
   const userState = JSON.parse(localStorage.getItem('userState'))
   const { ID, token } = userState
 
   try {
-    const { data } = await axios.get(`/api/users/${ID}/accounts`, {
+    const { data } = await axios.get(`${server}api/users/${ID}/accounts`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -26,7 +27,7 @@ export const createNewAccount = async (
 
   try {
     const { data } = await axios.post(
-      `/api/users/${userId}/accounts/signup`,
+      `${server}api/users/${userId}/accounts/signup`,
       credentials,
       {
         headers: {

@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
 import { BrowserRouter, Route } from 'react-router-dom'
-import { userLogin } from './actions/userActions'
 import Header from './components/Header'
 import Message from './components/Message'
 import { defaultUserState } from './defaultStates/defaultStates'
@@ -13,6 +12,7 @@ function App() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('userState')) || defaultUserState
   )
+
   const [projects, setProjects] = useState([])
 
   const routes = [
