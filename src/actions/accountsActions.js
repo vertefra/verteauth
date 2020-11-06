@@ -3,6 +3,7 @@ import { server } from '../index.js'
 
 export const loadAccounts = async () => {
   const userState = JSON.parse(localStorage.getItem('userState'))
+  console.log('USER STATE', userState)
   const { ID, token } = userState
 
   try {

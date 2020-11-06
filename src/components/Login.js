@@ -21,7 +21,6 @@ const Login = ({ userHandlers }) => {
 
     const userState = await userLogin(form)
     if (userState.success) {
-      userState.auth = true
       setUser(userState)
     } else {
       // the object received will give an error property to the user Object

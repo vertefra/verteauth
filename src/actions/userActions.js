@@ -8,6 +8,9 @@ export const userLogin = async (credentials = { email: '', password: '' }) => {
 
     data.auth = true
 
+    console.log('DATA BEFORE LOCAL STORAGE ', data)
+    localStorage.setItem('userState', JSON.stringify(data))
+
     return data
   } catch (err) {
     return err.response.data
