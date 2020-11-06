@@ -12,15 +12,14 @@ const UserInfo = ({ userHandlers }) => {
 
   const handleUpdateUrl = () => {
     if (!form.readOnly) {
-      setUser({
-        ...user,
-        redirectURL: form.url,
-      })
+      user.redirectURL = form.url
       ;(async () => {
-        console.log('user before ', user)
         const data = await updateUser(user)
         if (data.success) {
-          // setUser(data.user)
+          setUser({
+            ...user,
+            ...data,
+          })
         } else {
           setUser({
             ...user,

@@ -8,9 +8,6 @@ export const userLogin = async (credentials = { email: '', password: '' }) => {
 
     data.auth = true
 
-    localStorage.setItem('userState', JSON.stringify(data))
-    localStorage.setItem('token', data.token)
-
     return data
   } catch (err) {
     return err.response.data
@@ -29,10 +26,9 @@ export const userSignUp = async (
 }
 
 export const updateUser = async (userState = defaultUserState) => {
-  console.log('UPDATING USER', userState)
   try {
     const { data } = await axios.put(
-      `${server}/api/users/${userState.ID}`,
+      `${server}api/users/${userState.ID}`,
       userState,
       {
         headers: {
@@ -40,7 +36,6 @@ export const updateUser = async (userState = defaultUserState) => {
         },
       }
     )
-    console.log(data)
     return data
   } catch (err) {
     return err.response.data

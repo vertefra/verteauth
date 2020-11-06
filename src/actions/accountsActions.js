@@ -14,8 +14,8 @@ export const loadAccounts = async () => {
 
     return data
   } catch (err) {
-    console.log(err.request.data)
-    return err.request.data
+    console.log(err.response.data)
+    return err.response.data
   }
 }
 
@@ -23,11 +23,11 @@ export const createNewAccount = async (
   credentials = { username: '', password: '' }
 ) => {
   const userState = JSON.parse(localStorage.getItem('userState'))
-  const { userId, token, key } = userState
+  const { ID, token, key } = userState
 
   try {
     const { data } = await axios.post(
-      `${server}api/users/${userId}/accounts/signup`,
+      `${server}api/users/${ID}/accounts/signup`,
       credentials,
       {
         headers: {

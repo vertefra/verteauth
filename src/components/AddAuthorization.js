@@ -23,6 +23,7 @@ const AddAuthorization = ({ userHandlers, projectHandlers }) => {
         ...user,
         error: data.error,
       })
+      setForm(defaultFormAccountState)
     } else {
       const data = await loadAccounts()
       if (data.success) {

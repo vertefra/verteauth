@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
 import { BrowserRouter, Route } from 'react-router-dom'
@@ -14,6 +14,12 @@ function App() {
   )
 
   const [projects, setProjects] = useState([])
+
+  // every time that the user updates this useEffect will save the changes in local storage
+
+  useEffect(() => {
+    localStorage.setItem('userState', JSON.stringify(user))
+  }, [user])
 
   const routes = [
     {

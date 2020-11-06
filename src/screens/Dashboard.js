@@ -24,9 +24,7 @@ function Dashboard({ userHandlers, projectHandlers }) {
         }
       })()
     }
-  }, [user])
-
-  console.log(projects)
+  }, [user, setProjects])
 
   return (
     <Container className="container">
