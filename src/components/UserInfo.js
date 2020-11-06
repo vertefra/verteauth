@@ -10,6 +10,8 @@ const UserInfo = ({ userHandlers }) => {
     url: user.redirectURL,
   })
 
+  console.log('USER', user)
+
   const handleUpdateUrl = () => {
     if (!form.readOnly) {
       user.redirectURL = form.url

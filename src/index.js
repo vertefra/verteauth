@@ -8,7 +8,7 @@ import './bootstrap.min.css'
 const prod = 'https://verte-auth-server.herokuapp.com/'
 const dev = 'http://127.0.0.1:4999/'
 
-export const server = dev
+export const server = prod
 
 ReactDOM.render(
   <React.StrictMode>
